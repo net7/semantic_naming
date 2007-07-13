@@ -102,4 +102,9 @@ class URITest < Test::Unit::TestCase
     assert_raises(NameError) { N::Foo }
   end
   
+  # Tests the array-type accessor
+  def test_shortcut_accessor
+    assert_equal(N::LOCAL, N::URI[:local])
+  end
+  
 end

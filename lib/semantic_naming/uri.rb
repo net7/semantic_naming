@@ -68,6 +68,14 @@ module N
       (uri_s =~ /\A#{@uri_s}\w*/) != nil
     end
     
+    # Request URI by shortcut
+    def self.[](shortcut)
+      shortcut = shortcut.to_s.upcase.to_sym
+      
+      @@registered_uris[shortcut]
+    end
+    
+    
     # Register a shortcut to the given URI
     def self.shortcut(shortcut, uri)
       shortcut = shortcut.to_s.upcase.to_sym
