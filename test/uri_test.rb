@@ -107,4 +107,12 @@ class URITest < Test::Unit::TestCase
     assert_equal(N::LOCAL, N::URI[:local])
   end
   
+  # Test the is_uri? convenience method
+  def test_is_uri
+    assert(N::URI.is_uri?("http://foobar.org/"))
+    assert(N::URI.is_uri?("http://foobar.org/"))
+    assert(N::URI.is_uri?("baa:boo"))
+    assert(!N::URI.is_uri?("foo"))
+  end
+  
 end

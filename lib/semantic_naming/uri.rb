@@ -92,5 +92,10 @@ module N
       return uri
     end
     
+    # Check if a given string is an URI
+    def self.is_uri?(uri_str)
+      uri_str =~ /:/
+    end
+    
   end
 end
