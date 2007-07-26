@@ -1,4 +1,5 @@
 require 'test/unit'
+require File.dirname(__FILE__) + '/test_helper'
 require File.dirname(__FILE__) + "/../lib/semantic_naming"
   
 # Test the uri class
