@@ -5,6 +5,13 @@ module N
   
     # Contains the registered uris
     @@registered_uris = Hash.new
+    
+    # Contains an inverse hash to lookup the shortcuts by uir
+    @@inverse_register = Hash.new
+    
+    # Regexp that can match the part up until last # or / character,
+    # and the part behind that (domain, localname)
+    @@domainsplit_re = Regexp.compile("(.*[/#])([^/#]*)$")
   
     # make some builtin methods private because lookup doesn't work otherwise 
     # on e.g. RDF::type and FOAF::name
@@ -70,24 +77,76 @@ module N
     
     # Request URI by shortcut
     def self.[](shortcut)
-      shortcut = shortcut.to_s.upcase.to_sym
+      shortcut = shortcut.to_s.downcase.to_sym
       
       @@registered_uris[shortcut]
     end
     
+    # Returns the local name
+    def local_name
+      localname = nil
+      
+      if(md = @@domainsplit_re.match(@uri_s))
+        localname = md[2]
+      end
+      
+      localname
+    end
+    
+    # Returns the domain part of the URI
+    def domain_part
+      domainpart = nil
+      
+      if(md = @@domainsplit_re.match(@uri_s))
+        domainpart = md[1]
+      end
+      
+      domainpart ? URI.new(domainpart) : nil
+    end
+    
+    # Returns the shortcut for the current URI, or nil
+    # if no shortcut is defined for this URI
+    def my_shortcut
+      @@inverse_register[@uri_s]
+    end
+    
+    # Returns the namespace of this URI, if the URI
+    # is part of a namespace. The rule is quite strict:
+    # The URI is only part of the namespace if it is the
+    # namespace itself or the namespace plus a single local part
+    # 
+    # If the URI is not part of a namespace, nil is returned
+    def namespace
+      nspace = nil
+      
+      domain_shortcut = domain_part.my_shortcut
+      
+      if(domain_shortcut && URI[domain_shortcut].is_a?(Namespace))
+        nspace = domain_shortcut
+      end
+      
+      nspace
+    end
     
     # Register a shortcut to the given URI
     def self.shortcut(shortcut, uri)
-      shortcut = shortcut.to_s.upcase.to_sym
+      shortcut = shortcut.to_s.downcase.to_sym
+      constant = shortcut.to_s.upcase.to_sym
+      
       # make an object of my own type
       uri = self.new(uri)
       
-      if(@@registered_uris[shortcut] || N.const_defined?(shortcut))
+      if(@@registered_uris[shortcut] || N.const_defined?(constant))
         raise(NameError, "Shortcut already defined: '#{shortcut.to_s}'")
       end
       
+      if(@@inverse_register[uri.to_s])
+        raise(NameError, "Shortcut for this uri already exists: #{uri.to_s}")
+      end
+      
       @@registered_uris[shortcut] = uri
-      N.const_set(shortcut, uri)
+      @@inverse_register[uri.to_s] = shortcut
+      N.const_set(constant, uri)
       
       return uri
     end

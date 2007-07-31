@@ -95,11 +95,21 @@ class URITest < Test::Unit::TestCase
   
   # Test registering of shortcuts
   def test_shortcuts
-    uri = N::URI.new(@@local_domain)
-    N::URI.shortcut(:foo, @@local_domain)
+    uri = N::URI.new("http://foo.foo.com/")
+    N::URI.shortcut(:foo, uri.to_s)
     assert_equal(N::FOO, uri)
     assert_kind_of(N::URI, N::FOO)
-    assert_raises(NameError) { N::URI.shortcut(:foo, "xxx") }
+  end
+  
+  # Test if the assignment of illegal shortcuts fails correctly
+  def test_illegal_shortcuts
+    N::URI.shortcut(:illegal_short, "http://illegal.shortcut.com/")
+    assert_raises(NameError) { N::URI.shortcut(:illegal_short, "xxx") }
+    assert_raises(NameError) { N::URI.shortcut(:legal_short, "http://illegal.shortcut.com/")}
+  end
+  
+  # Checks if nonexistent/illegal shortcuts fail correctly
+  def test_nonexistent_shortcut 
     assert_raises(NameError) { N::Foo }
   end
   
@@ -115,5 +125,66 @@ class URITest < Test::Unit::TestCase
     assert(N::URI.is_uri?("baa:boo"))
     assert(!N::URI.is_uri?("foo"))
   end
+  
+  # Try to get the shortcut from a URL
+  def test_check_shortcut
+    N::Namespace.shortcut(:xyshortcut, "http://xyz/")
+    assert_equal(:xyshortcut, N::URI.new("http://xyz/").my_shortcut)
+  end
+  
+  # Try to get inexistent shortcut from a URL
+  def test_inexistent_shortcut
+    assert_equal(nil, N::URI.new("http://noshortcut/").my_shortcut)
+  end
+  
+  # Try to get the local name of an uri
+  def test_local_name
+    assert_equal("master", N::URI.new("http://somethingelse.com/master").local_name)
+    assert_equal("slave", N::URI.new("http://somethingelse.com/master#slave").local_name)
+    assert_equal("chicken", N::URI.new("http://somethingelse.com/animals/chicken").local_name)
+  end
+  
+  # Special case for local name
+  def test_only_local_name
+    assert_equal(nil, N::URI.new("file:thingy").local_name)
+  end
+  
+  # Only domain, no local
+  def test_inexistent_local_name
+    assert_equal("", N::URI.new("http://somethingelse.com/").local_name)
+  end
+  
+  # Try to get the path name of an uri
+  def test_domain_part
+    assert_kind_of(N::URI, N::URI.new("http://somethingelse.com/foobar/bla/").domain_part)
+    assert_equal("http://somethingelse.com/foobar/bla/", N::URI.new("http://somethingelse.com/foobar/bla/").domain_part.to_s)
+    assert_equal("http://somethingelse.com/foobar/bla/", N::URI.new("http://somethingelse.com/foobar/bla/thing").domain_part.to_s)
+    assert_equal("http://somethingelse.com/foobar/bla#", N::URI.new("http://somethingelse.com/foobar/bla#thong").domain_part.to_s)
+  end
+  
+  # Test special URI with no domain
+  def test_no_domain
+    assert_equal(nil, N::URI.new("file:thingy").domain_part)
+  end
+  
+  # Try to get the namspace of an uri
+  def test_namespace
+    N::Namespace.shortcut(:test_namespace, "http://test_namespace/")
+    assert_equal(:test_namespace, N::URI.new("http://test_namespace/").namespace)
+    assert_equal(:test_namespace, N::URI.new("http://test_namespace/else").namespace)
+    assert_equal(nil, N::URI.new("http://test_namespace/else/other").namespace)
+  end
+  
+  # No namespace
+  def test_namespace_inexistent
+    assert_equal(nil, N::URI.new("http://unrelated").namespace)
+  end
+  
+  # Test namespace with shortcut of wrong time
+  def test_not_defined_as_namespace
+    N::URI.shortcut(:not_namespace, "http://iamnotanamespace/")
+    assert_equal(nil, N::URI.new("http://iamnotanamespace/").namespace)
+  end
+  
   
 end
