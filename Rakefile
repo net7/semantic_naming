@@ -1,6 +1,7 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/gempackagetask'
+require 'rake/rdoctask'
 
 # Runs the test suite
 Rake::TestTask.new do |task|
