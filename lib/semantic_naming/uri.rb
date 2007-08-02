@@ -75,11 +75,15 @@ module N
       (uri_s =~ /\A#{@uri_s}\w*/) != nil
     end
     
-    # Request URI by shortcut
+    # Request URI by shortcut. If called on a sublass, this accessor
+    # will only return an URI if it's of the same type as the subclass.
     def self.[](shortcut)
       shortcut = shortcut.to_s.downcase.to_sym
       
-      @@registered_uris[shortcut]
+      uri = @@registered_uris[shortcut]
+      
+      # We only return the uri if it's of the same kind as ourselves
+      uri.kind_of?(self) ? uri : nil 
     end
     
     # Returns the local name

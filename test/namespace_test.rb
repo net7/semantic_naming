@@ -6,13 +6,31 @@ require File.dirname(__FILE__) + "/../lib/semantic_naming"
 class NamespaceTest < Test::Unit::TestCase
   # Tests the basic registering of namespaces
   def test_shortcut
-    new_ns = N::Namespace.shortcut(:newns, "http://www.new.com/")
-    assert_equal(new_ns, N::NEWNS);
-    assert_equal(new_ns.to_s, "http://www.new.com/")
-    assert_equal(new_ns, N::URI.new("http://www.new.com/"))
+    new_ns = N::Namespace.shortcut(:ns_short, "http://www.ns_short.com/")
+    assert_equal(new_ns, N::NS_SHORT);
+    assert_equal(new_ns.to_s, "http://www.ns_short.com/")
+    assert_equal(new_ns, N::URI.new("http://www.ns_short.com/"))
     assert_kind_of(N::Namespace, new_ns)
-    assert_kind_of(N::Namespace, N::NEWNS)
-    assert_raise(NameError) { N::Namespace.shortcut(:newns, "http://www.new.com/") }
+    assert_kind_of(N::Namespace, N::NS_SHORT)
+    assert_raise(NameError) { N::Namespace.shortcut(:ns_short, "http://www.ns_short.com/") }
+  end
+  
+  # Test the array-type accessor
+  def test_array_type_access
+    new_ns = N::Namespace.shortcut(:ns_array_test, "http://www.ns_array_test.com/")
+    assert_equal(new_ns, N::Namespace[:ns_array_test])
+  end
+  
+  # Test the array-type accessor if the superclass is excluded
+  def test_array_type_access_super
+    new_ns = N::URI.shortcut(:ns_array_test_s, "http://www.ns_array_test_super.com/")
+    assert_equal(nil, N::Namespace[:ns_array_test_s])
+  end
+  
+  # Test the array-type accessor if sibling classes are excluded
+  def test_array_type_access_sibling
+    new_ns = N::URI.shortcut(:ns_array_test_sib, "http://www.ns_array_test_sibling.com/")
+    assert_equal(nil, N::Namespace[:ns_array_test_sib])
   end
 end
   
