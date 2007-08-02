@@ -118,6 +118,12 @@ class URITest < Test::Unit::TestCase
     assert_equal(N::LOCAL, N::URI[:local])
   end
   
+  # Test array-type accessor with subclass
+  def test_shortcut_accessor_subclass
+    namesp = N::Namespace.shortcut(:uri_array_ns_short, "http://test_shortcut_accessor_subclass/")
+    assert_equal(namesp, N::URI[:uri_array_ns_short])
+  end
+  
   # Test the is_uri? convenience method
   def test_is_uri
     assert(N::URI.is_uri?("http://foobar.org/"))
