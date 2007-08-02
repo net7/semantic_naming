@@ -28,6 +28,8 @@ end
 
 Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include("lib/**/*rb")
+  rdoc.title    = 'Semantic Naming'
+  rdoc.options << '--line-numbers' << '--inline-source'
 end
 
 task :cruise => ['test', 'rdoc']
