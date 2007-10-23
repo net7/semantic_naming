@@ -52,6 +52,11 @@ module N
       @uri_s
     end
     
+    # Get a string representation in the form of 'namespace:name'
+    def to_name_s
+      "#{namespace}:#{local_name}"
+    end
+    
     # This creates a helpers for a nice notation of
     # like my_domain::myid
     def const_missing(klass)
