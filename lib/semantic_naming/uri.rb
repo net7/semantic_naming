@@ -91,6 +91,11 @@ module N
       uri.kind_of?(self) ? uri : nil 
     end
     
+    # Check if a shortcut is registered
+    def self.shortcut_exists?(shortcut)
+      @@registered_uris[shortcut.to_s.downcase.to_sym] != nil
+    end
+    
     # Returns the local name
     def local_name
       localname = nil

@@ -4,13 +4,11 @@ module N
   class SourceClass < URI
     
     # Get the supertype of this class
-    def supertype
+    def supertypes
       qry = Query.new.distinct.select(:o)
       qry.where(Module::RDFS::Resource.new(@uri_s), Module::RDFS::Resource.new(RDFS::subClassOf.to_s), :o)
       qry.where(:s, Module::RDFS::Resource.new(RDF::type.to_s), Module::RDFS::Resource.new((RDFS + 'Class').to_s))
-      results = qry.execute
-      raise(SemanticNamingError, "Type with multiple supertypes found") if(results && results.size > 1)
-      (results && results.size == 1) ? SourceClass.new(results[0].uri) : nil
+      results = qry.execute.collect { |item| SourceClass.new(item.uri) }
     end
     
     # Get the subtypes of this type
