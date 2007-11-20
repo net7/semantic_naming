@@ -52,9 +52,10 @@ module N
       @uri_s
     end
     
-    # Get a string representation in the form of 'namespace:name'
-    def to_name_s
-      "#{namespace}:#{local_name}"
+    # Get a string representation in the form of 'namespace:name'. It is 
+    # possible to select a different separator from ':'
+    def to_name_s(separator = ':')
+      "#{namespace}#{separator}#{local_name}"
     end
     
     # This creates a helpers for a nice notation of
