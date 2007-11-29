@@ -94,11 +94,20 @@ class URITest < Test::Unit::TestCase
   end
   
   # Test registering of shortcuts
-  def test_shortcuts
+  def test_shortcut_register
     uri = N::URI.new("http://foo.foo.com/")
     N::URI.shortcut(:foo, uri.to_s)
     assert_equal(N::FOO, uri)
     assert_kind_of(N::URI, N::FOO)
+  end
+  
+  # Test the shortcuts method
+  def test_shortcuts
+    N::URI.shortcut(:at_least_one, "http://atleast.com")
+    N::URI.shortcut(:at_least_two, "http://atleasttwo.com")
+    assert(N::URI.shortcuts.size > 1, "There should be at least two shortcuts")
+    assert(N::URI.shortcuts.keys.include?(:at_least_one))
+    assert(N::URI.shortcuts.keys.include?(:at_least_two))
   end
   
   # Test if the assignment of illegal shortcuts fails correctly

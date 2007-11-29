@@ -92,6 +92,18 @@ module N
       uri.kind_of?(self) ? uri : nil 
     end
     
+    # Returns a hash with all registered shortcuts.
+    # This will only return the shortcuts of the same class (and subclasses)
+    # than the one on which the method is called
+    def self.shortcuts
+      shortcuts = {}
+      @@registered_uris.each do |key, value|
+        shortcuts[key] = value if(value.kind_of?(self))
+      end
+      
+      shortcuts
+    end
+    
     # Check if a shortcut is registered
     def self.shortcut_exists?(shortcut)
       @@registered_uris[shortcut.to_s.downcase.to_sym] != nil

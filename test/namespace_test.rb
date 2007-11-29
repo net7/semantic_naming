@@ -15,6 +15,14 @@ class NamespaceTest < Test::Unit::TestCase
     assert_raise(NameError) { N::Namespace.shortcut(:ns_short, "http://www.ns_short.com/") }
   end
   
+  # Test if the "shortcuts" method works correctly for namespaces
+  def test_shortcuts
+    N::Namespace.shortcut(:at_least_one_ns, "http://atleast_namespace.com/")
+    N::URI.shortcut(:another_one_outside_uri, "http://anotherone_uri.com/")
+    assert(N::Namespace.shortcuts.size > 0, "There should be at least one namespace shortcut")
+    assert(!N::Namespace.shortcuts.include?(:another_one_outside))
+  end
+  
   # Test the array-type accessor
   def test_array_type_access
     new_ns = N::Namespace.shortcut(:ns_array_test, "http://www.ns_array_test.com/")
