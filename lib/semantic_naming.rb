@@ -7,6 +7,7 @@ $: << this_dir
 $: << this_dir + '/semantic_naming/'
 
 require 'semantic_naming/uri'
+require 'semantic_naming/default_namespaces'
 require 'semantic_naming/namespace'
 require 'semantic_naming/source_class'
 require 'semantic_naming/predicate'
