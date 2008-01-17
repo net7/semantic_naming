@@ -155,19 +155,21 @@ module N
       nspace
     end
     
-    # Register a shortcut to the given URI
-    def self.shortcut(shortcut, uri)
+    # Register a shortcut to the given URI. You may force to overwrite an 
+    # existing shortcut, but this is not recommende. The option exists practically
+    # only to override default namespaces if there is a need.
+    def self.shortcut(shortcut, uri, force = false)
       shortcut = shortcut.to_s.downcase.to_sym
       constant = shortcut.to_s.upcase.to_sym
       
       # make an object of my own type
       uri = self.new(uri)
       
-      if(@@registered_uris[shortcut] || N.const_defined?(constant))
+      if(!force && (@@registered_uris[shortcut] || N.const_defined?(constant)))
         raise(NameError, "Shortcut already defined: '#{shortcut.to_s}'")
       end
       
-      if(@@inverse_register[uri.to_s])
+      if(!force && (@@inverse_register[uri.to_s]))
         raise(NameError, "Shortcut for this uri already exists: #{uri.to_s}")
       end
       
