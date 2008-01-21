@@ -9,7 +9,7 @@ module N
     def supertypes
       return nil unless(active_rdf?)
       qry = Query.new.distinct.select(:o)
-      qry.where(Mmake_res(@uri_s), make_res(RDFS::subClassOf), :o)
+      qry.where(make_res(@uri_s), make_res(RDFS::subClassOf), :o)
       qry.where(:o, make_res(RDF::type), make_res(RDFS + 'Class'))
       qry.execute.collect { |item| SourceClass.new(item.uri) }
     end
