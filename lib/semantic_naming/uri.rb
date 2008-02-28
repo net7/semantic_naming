@@ -26,8 +26,14 @@ module N
     
     # Compare operator
     def ==(object)
-      return object.to_s == @uri_s if(object.kind_of?(URI))
+      return true if eql?(object)
       return object == @uri_s if(object.kind_of?(String))
+      return false
+    end
+    
+    # eql? compare operator
+    def eql?(object)
+      return object.to_s == @uri_s if(object.kind_of?(URI))
       return false
     end
     
