@@ -52,6 +52,9 @@ module N
       @uri_s
     end
     
+    # Alias "uri" for compatibility with ActiveRDF
+    alias_method :uri, :to_s
+    
     # Get a string representation in the form of 'namespace:name'. It is 
     # possible to select a different separator from ':'
     def to_name_s(separator = ':')
