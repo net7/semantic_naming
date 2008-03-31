@@ -123,7 +123,7 @@ module N
       type = str.split(separator)
       type = [type[1]] if(type[0] == "")
       if(type.size == 2)
-        N::URI[type[0]] + type[1]
+        self.new(N::URI[type[0]] + type[1])
       else
         default_namespace + type[0]
       end
