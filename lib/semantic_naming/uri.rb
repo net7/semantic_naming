@@ -118,6 +118,17 @@ module N
       @@registered_uris[shortcut.to_s.downcase.to_sym] != nil
     end
     
+    # Get an URI string from the given string in ns:name notation
+    def self.make_uri(str, separator = ":", default_namespace = N::LOCAL)
+      type = str.split(separator)
+      type = [type[1]] if(type[0] == "")
+      if(type.size == 2)
+        N::URI[type[0]] + type[1]
+      else
+        default_namespace + type[0]
+      end
+    end
+    
     # Returns the local name
     def local_name
       localname = nil

@@ -195,6 +195,13 @@ class URITest < Test::Unit::TestCase
     assert_equal(nil, N::URI.new("http://unrelated").namespace)
   end
   
+  # Test make_uri
+  def test_make_uri
+    N::Namespace.shortcut(:makeuri, "http://test_makeuri/")
+    uri = N::URI.make_uri("makeuri:foo")
+    assert_equal("http://test_makeuri/foo", uri.to_s)
+  end
+  
   # Test namespace with shortcut of wrong time
   def test_not_defined_as_namespace
     N::URI.shortcut(:not_namespace, "http://iamnotanamespace/")
