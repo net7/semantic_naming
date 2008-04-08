@@ -18,22 +18,5 @@ class PredicateTest < Test::Unit::TestCase
     assert_kind_of(Predicate, new_pr)
     assert_kind_of(Predicate, NEWPR)
     assert_raise(NameError) { Namespace.shortcut(:newpr, @uri) }
-  end
-  
-  def test_should_return_local_name
-    assert_equal(['sources', '1'], predicate.send(:local_name))
-  end
-  
-  def test_should_return_namespace
-    assert_equal('sources', predicate.namespace)
-  end
-  
-  def test_should_return_name
-    assert_equal('1', predicate.name)
-  end
-  
-  private
-  def predicate
-    Predicate.new("#{@uri}sources#1")
-  end
+  end  
 end
