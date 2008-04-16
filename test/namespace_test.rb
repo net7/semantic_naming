@@ -1,6 +1,5 @@
 require 'test/unit'
 require File.dirname(__FILE__) + '/test_helper'
-require File.dirname(__FILE__) + "/../lib/semantic_naming"
   
 # Test the namespace functionality
 class NamespaceTest < Test::Unit::TestCase
@@ -31,14 +30,22 @@ class NamespaceTest < Test::Unit::TestCase
   
   # Test the array-type accessor if the superclass is excluded
   def test_array_type_access_super
-    new_ns = N::URI.shortcut(:ns_array_test_s, "http://www.ns_array_test_super.com/")
+    N::URI.shortcut(:ns_array_test_s, "http://www.ns_array_test_super.com/")
     assert_equal(nil, N::Namespace[:ns_array_test_s])
   end
   
   # Test the array-type accessor if sibling classes are excluded
   def test_array_type_access_sibling
-    new_ns = N::URI.shortcut(:ns_array_test_sib, "http://www.ns_array_test_sibling.com/")
+    N::SourceClass.shortcut(:ns_array_test_sib, "http://www.ns_array_test_sibling.com/")
     assert_equal(nil, N::Namespace[:ns_array_test_sib])
+  end
+  
+  # Test getting elements by type
+  def test_elements_by_type
+    return unless(RDF_ACTIVE)
+    namespace = N::Namespace.new(N::RDFTEST)
+    elements = namespace.elements_with_type(N::RDFTEST.Type1).collect { |type| type.uri.to_s }
+    assert_equal([N::RDFTEST.test1.to_s, N::RDFTEST.test2.to_s].sort, elements.sort)
   end
 end
   

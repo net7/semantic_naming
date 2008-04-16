@@ -12,6 +12,9 @@ module N
     # Regexp that can match the part up until last # or / character,
     # and the part behind that (domain, localname)
     @@domainsplit_re = Regexp.compile("(.*[/#])([^/#]*)$")
+    
+    # Match the language part in labels
+    @@lang_re = /(.*)@(.+)$/
   
     # make some builtin methods private because lookup doesn't work otherwise 
     # on e.g. RDF::type and FOAF::name
@@ -203,6 +206,74 @@ module N
     # Check if a given string is an URI
     def self.is_uri?(uri_str)
       uri_str =~ /:/
+    end
+    
+    # If the RDF store is active and the class has an rdfs:label, this will be
+    # returned. Otherwise, this will return the short name of the current source
+    # (like ns:name)
+    # 
+    # You may give a language, if none is given 'en' is used by default. If
+    # no label with a language marker is found, the first none-language-label
+    # is used
+    def rdf_label(language = 'en')
+      @labels ||= {}
+      @labels[language] ||= label_by_lang(rdfs_labels, language)
+      # The rdf label is cache, while the default may change
+      @labels[language] ||= to_name_s
+      @labels[language]
+    end
+    
+    private
+    
+    # Check if the ActiveRDF library is present.
+    def self.active_rdf?
+      unless(defined?(@active_rdf))
+        @active_rdf = defined?(::RDFS::Resource)
+      end
+      
+      @active_rdf
+    end
+    
+    # RDF check, this is a convenience for instances
+    def active_rdf?
+      URI.active_rdf?
+    end
+    
+    # Create a resource from the given type
+    def self.make_res(type)
+      ::RDFS::Resource.new(type.to_s)
+    end
+    
+    # Instance convenience accessor
+    def make_res(type)
+      self.class.make_res(type)
+    end
+    
+    # Gets the rdfs:labels from the rdf store
+    def rdfs_labels
+      if(active_rdf?)
+        labels = make_res(@uri_s)[(N::RDFS::label).to_s]
+        if(labels && labels.size > 0)
+          labels
+        end # else nil
+      end # else nil
+    end
+    
+    # Gets the label for the given language. If no labels are given, return nil
+    def label_by_lang(labels, language = 'en')
+      return nil unless(labels)
+      result = nil
+      labels.each do |label|
+        if(match = @@lang_re.match(label)) # check if there is a "language" string
+          if(match[2] == language)
+            return match[1] # We've found one, break here and return the label part
+          end
+        else
+          result ||= label # Keep the non-language label
+        end
+      end
+      
+      result
     end
     
   end
