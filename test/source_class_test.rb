@@ -1,6 +1,6 @@
 require 'test/unit'
 require File.dirname(__FILE__) + '/test_helper'
-require File.dirname(__FILE__) + "/../lib/semantic_naming"
+
   
 # Test the uri class
 class TypeTest < Test::Unit::TestCase
@@ -14,5 +14,33 @@ class TypeTest < Test::Unit::TestCase
     assert_kind_of(N::SourceClass, new_sc)
     assert_kind_of(N::SourceClass, N::NEWSC)
     assert_raise(NameError) { N::Namespace.shortcut(:newsc, "http://www.source_shortcut.com/") }
+  end
+  
+  # Test the supertypes method
+  def test_supertypes
+    return unless(RDF_ACTIVE)
+    src = N::SourceClass.new(N::RDFTEST.Type1)
+    subtypes = src.subtypes.collect { |type| type.uri.to_s }
+    assert_equal([N::RDFTEST.Type2.to_s, N::RDFTEST.Type3.to_s].sort, subtypes.sort)
+  end
+  
+  def test_subtypes
+    return unless(RDF_ACTIVE)
+    src = N::SourceClass.new(N::RDFTEST.Type3)
+    supertypes = src.supertypes.collect { |type| type.uri.to_s }
+    assert_equal([N::RDFTEST.Type1.to_s, N::RDFTEST.Type4.to_s].sort, supertypes.sort)
+  end
+  
+  def test_instances
+    return unless(RDF_ACTIVE)
+    src = N::SourceClass.new(N::RDFTEST.Type1)
+    instances = src.instances(N::URI).collect { |type| type.uri.to_s }
+    assert_equal([N::RDFTEST.test1.to_s, N::RDFTEST.test2.to_s, N::RDFTEST2.test1.to_s, N::RDFTEST2.test2.to_s].sort, instances.sort)
+  end
+  
+  def test_rdf_types
+    return unless(RDF_ACTIVE)
+    types = N::SourceClass.rdf_types.collect { |type| type.uri.to_s }
+    assert_equal([N::RDFTEST.Type1.to_s, N::RDFTEST.Type2.to_s, N::RDFTEST.Type3.to_s, N::RDFTEST.Type4.to_s].sort, types.sort)
   end
 end

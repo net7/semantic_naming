@@ -1,7 +1,5 @@
 require 'test/unit'
 require File.dirname(__FILE__) + '/test_helper'
-require File.dirname(__FILE__) + "/../lib/semantic_naming"
-  
 # Test the uri class
 class URITest < Test::Unit::TestCase
   
@@ -208,5 +206,16 @@ class URITest < Test::Unit::TestCase
     assert_equal(nil, N::URI.new("http://iamnotanamespace/").namespace)
   end
   
+  # Test rdf label
+  def test_rdf_label
+    uri = N::URI.new(N::RDFTEST::test1)
+    if(RDF_ACTIVE)
+      assert_equal("Like a virgin", uri.rdf_label('it'))
+      assert_equal("come on", uri.rdf_label('en'))
+      assert_equal("come on", uri.rdf_label)
+    else
+      assert_equal("rdftest:test1", uri.rdf_label('it'))
+    end
+  end
   
 end

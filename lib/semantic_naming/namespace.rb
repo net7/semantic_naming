@@ -11,5 +11,19 @@ module N
     @@default_namespaces.each do |shortcut, uri|
       Namespace.shortcut(shortcut, uri)
     end
+    
+    # Finds all members of the given type that are part of this namespace. 
+    # *Attention*: Due to the workings of SPARQL this will retrieve *all*
+    # elements that match the type and filter them. Thus it's advised to
+    # use this only for types of which only a few elements are known to exist
+    # (e.g. Onotology classes)
+    def elements_with_type(type)
+      return unless(rdf_active?)
+      qry = ::Query.new.distinct.select(:s)
+      qry.where(:s, make_res(RDF::type), make_res(type))
+      qry.filter_uri_regexp(:s, "^#{@uri_s}")
+      qry.execute.collect { |item| URI.new(item.uri) }
+    end
+    
   end
 end
