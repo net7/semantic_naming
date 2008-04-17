@@ -25,5 +25,9 @@ module N
       qry.execute.collect { |item| URI.new(item.uri) }
     end
     
+    # Returns a list of predicate names.
+    def predicates
+      elements_with_type(N::RDF.Property).map { |p| p.local_name }
+    end
   end
 end

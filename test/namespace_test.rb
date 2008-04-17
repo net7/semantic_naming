@@ -47,5 +47,9 @@ class NamespaceTest < Test::Unit::TestCase
     elements = namespace.elements_with_type(N::RDFTEST.Type1).collect { |type| type.uri.to_s }
     assert_equal([N::RDFTEST.test1.to_s, N::RDFTEST.test2.to_s].sort, elements.sort)
   end
+  
+  def test_predicates
+    assert_kind_of(Array, N::RDF.predicates) unless RDF_ACTIVE
+  end
 end
   
