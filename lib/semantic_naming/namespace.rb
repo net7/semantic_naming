@@ -17,17 +17,17 @@ module N
     # elements that match the type and filter them. Thus it's advised to
     # use this only for types of which only a few elements are known to exist
     # (e.g. Onotology classes)
-    def elements_with_type(type)
+    def elements_with_type(type, element_type = N::URI)
       return unless(rdf_active?)
       qry = ::Query.new.distinct.select(:s)
       qry.where(:s, make_res(RDF::type), make_res(type))
       qry.filter_uri_regexp(:s, "^#{@uri_s}")
-      qry.execute.collect { |item| URI.new(item.uri) }
+      qry.execute.collect { |item| element_type.new(item.uri) }
     end
     
     # Returns a list of predicate names.
     def predicates
-      elements_with_type(N::RDF.Property).map { |p| p.local_name }
+      elements_with_type(N::RDF.Property, N::Predicate).map { |p| p.local_name }
     end
   end
 end
