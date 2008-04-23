@@ -218,4 +218,8 @@ class URITest < Test::Unit::TestCase
     end
   end
   
+  def test_hash
+    assert_equal(N::RDFTEST.testme.to_s.hash, N::RDFTEST.testme.hash)
+  end
+  
 end

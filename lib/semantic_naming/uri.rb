@@ -40,6 +40,11 @@ module N
       return false
     end
     
+    # Returns a hash
+    def hash
+      @uri_s.hash
+    end
+    
     # Add operator
     def +(uri)
       new_s = @uri_s + uri.to_s
