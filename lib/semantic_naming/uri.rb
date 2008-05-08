@@ -239,6 +239,18 @@ module N
       @active_rdf
     end
     
+    # See the respective class method
+    def is_iri?
+      self.class.is_iri?(@uri_s)
+    end
+    
+    # Checks if the current URI is a valid IRI (special for of URI defined
+    # in the SPARQL spec). URIs that are not IRIs may cause problems with
+    # SPARQL queries.
+    def self.is_iri?(string)
+      (string =~ /[{}|\\^`\s]/) == nil
+    end
+    
     # RDF check, this is a convenience for instances
     def active_rdf?
       URI.active_rdf?
@@ -256,7 +268,7 @@ module N
     
     # Gets the rdfs:labels from the rdf store
     def rdfs_labels
-      if(active_rdf?)
+     if(active_rdf? && is_iri?)
         labels = make_res(@uri_s)[(N::RDFS::label).to_s]
         if(labels && labels.size > 0)
           labels

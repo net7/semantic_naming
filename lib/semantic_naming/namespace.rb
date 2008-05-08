@@ -18,7 +18,7 @@ module N
     # use this only for types of which only a few elements are known to exist
     # (e.g. Onotology classes)
     def elements_with_type(type, element_type = N::URI)
-      return unless(rdf_active?)
+      return unless(rdf_active? && is_iri?)
       qry = ::Query.new.distinct.select(:s)
       qry.where(:s, make_res(RDF::type), make_res(type))
       qry.filter_uri_regexp(:s, "^#{@uri_s}")
