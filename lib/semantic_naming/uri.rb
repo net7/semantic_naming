@@ -233,7 +233,7 @@ module N
     # Check if the ActiveRDF library is present.
     def self.active_rdf?
       unless(defined?(@active_rdf))
-        @active_rdf = defined?(::RDFS::Resource)
+        @active_rdf = defined?(::ConnectionPool) &&  (::ConnectionPool.read_adapters.size > 0)
       end
       
       @active_rdf
