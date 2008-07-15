@@ -184,7 +184,7 @@ module N
     end
     
     # Register a shortcut to the given URI. You may force to overwrite an 
-    # existing shortcut, but this is not recommende. The option exists practically
+    # existing shortcut, but this is not recommended. The option exists practically
     # only to override default namespaces if there is a need.
     def self.shortcut(shortcut, uri, force = false)
       shortcut = shortcut.to_s.downcase.to_sym
