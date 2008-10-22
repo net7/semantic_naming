@@ -66,6 +66,11 @@ module N
       @uri_s
     end
     
+    # Same for YAML
+    def to_yaml
+      @uri_s
+    end
+    
     # Alias "uri" for compatibility with ActiveRDF
     alias_method :uri, :to_s
     
