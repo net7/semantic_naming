@@ -1,8 +1,12 @@
+require 'active_rdf'
 module N
   
   # This class contains basic functionality for URIs
   class URI
   
+    # Should behave like an ActiveRDF resource
+    include RDFS::ResourceLike
+    
     # Contains the registered uris
     @@registered_uris = Hash.new
     
