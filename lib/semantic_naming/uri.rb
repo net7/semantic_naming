@@ -70,9 +70,9 @@ module N
       @uri_s
     end
     
-    # Same for YAML
+    # YAML representation is the uri string
     def to_yaml
-      @uri_s
+      self.to_s.to_yaml
     end
     
     # Alias "uri" for compatibility with ActiveRDF

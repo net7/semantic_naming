@@ -1,0 +1,3 @@
+= SemanticNaming
+
+Semantic URL handling that can be used with the Talia system or ActiveRDF
