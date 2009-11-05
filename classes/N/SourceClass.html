@@ -232,18 +232,22 @@ attribute) are included
 69:       <span class="ruby-identifier">all_types_qry</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">:element</span>, <span class="ruby-constant">RDF</span>.<span class="ruby-identifier">type</span>, <span class="ruby-identifier">:type</span>)
 70:       <span class="ruby-identifier">all_types</span> = <span class="ruby-identifier">all_types_qry</span>.<span class="ruby-identifier">execute</span>
 71:       
-72:       <span class="ruby-identifier">all_types_hash</span> = {}
-73:       <span class="ruby-identifier">all_types</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span> <span class="ruby-identifier">all_types_hash</span>[<span class="ruby-identifier">type</span>] = <span class="ruby-keyword kw">true</span> }
-74:       
-75:       <span class="ruby-identifier">qry</span> = <span class="ruby-constant">Query</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">SourceClass</span>).<span class="ruby-identifier">distinct</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">:class</span>, <span class="ruby-identifier">:subclass</span>)
-76:       <span class="ruby-identifier">qry</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">:subclass</span>, <span class="ruby-constant">RDFS</span>.<span class="ruby-identifier">subClassOf</span>, <span class="ruby-identifier">:class</span>)
-77:       <span class="ruby-identifier">subtype_list</span> = <span class="ruby-identifier">qry</span>.<span class="ruby-identifier">execute</span>
+72:       <span class="ruby-identifier">qry</span> = <span class="ruby-constant">Query</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">SourceClass</span>).<span class="ruby-identifier">distinct</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">:class</span>, <span class="ruby-identifier">:subclass</span>)
+73:       <span class="ruby-identifier">qry</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">:subclass</span>, <span class="ruby-constant">RDFS</span>.<span class="ruby-identifier">subClassOf</span>, <span class="ruby-identifier">:class</span>)
+74:       <span class="ruby-identifier">subtype_list</span> = <span class="ruby-identifier">qry</span>.<span class="ruby-identifier">execute</span>
+75:       
+76:       <span class="ruby-identifier">all_types_hash</span> = {}
+77:       <span class="ruby-identifier">all_types</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span> <span class="ruby-identifier">all_types_hash</span>[<span class="ruby-identifier">type</span>] = <span class="ruby-keyword kw">true</span> }
 78:       
-79:       <span class="ruby-identifier">hierarchy</span> = <span class="ruby-identifier">build_hierarchy_from</span>(<span class="ruby-identifier">subtype_list</span>)
-80:       <span class="ruby-identifier">purge_hierarchy!</span>(<span class="ruby-identifier">hierarchy</span>, <span class="ruby-identifier">all_types_hash</span>)
+79:       <span class="ruby-comment cmt"># TODO: Not very efficient, but then we don't expect many types</span>
+80:       <span class="ruby-identifier">all_type_list</span> = (<span class="ruby-identifier">all_types</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">subtype_list</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">el</span><span class="ruby-operator">|</span> <span class="ruby-identifier">el</span>.<span class="ruby-identifier">last</span> }).<span class="ruby-identifier">uniq</span>
 81:       
-82:       <span class="ruby-identifier">hierarchy</span>
-83:     <span class="ruby-keyword kw">end</span>
+82:       <span class="ruby-identifier">hierarchy</span> = <span class="ruby-identifier">build_hierarchy_from</span>(<span class="ruby-identifier">subtype_list</span>, <span class="ruby-identifier">all_type_list</span>)
+83:       
+84:       <span class="ruby-identifier">purge_hierarchy!</span>(<span class="ruby-identifier">hierarchy</span>, <span class="ruby-identifier">all_types_hash</span>)
+85:       
+86:       <span class="ruby-identifier">hierarchy</span>
+87:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
