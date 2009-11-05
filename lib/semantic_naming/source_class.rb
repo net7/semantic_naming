@@ -69,14 +69,18 @@ module N
       all_types_qry.where(:element, RDF.type, :type)
       all_types = all_types_qry.execute
       
-      all_types_hash = {}
-      all_types.each { |type| all_types_hash[type] = true }
-      
       qry = Query.new(SourceClass).distinct.select(:class, :subclass)
       qry.where(:subclass, RDFS.subClassOf, :class)
       subtype_list = qry.execute
       
-      hierarchy = build_hierarchy_from(subtype_list)
+      all_types_hash = {}
+      all_types.each { |type| all_types_hash[type] = true }
+      
+      # TODO: Not very efficient, but then we don't expect many types
+      all_type_list = (all_types + subtype_list.collect { |el| el.last }).uniq
+      
+      hierarchy = build_hierarchy_from(subtype_list, all_type_list)
+      
       purge_hierarchy!(hierarchy, all_types_hash)
       
       hierarchy
