@@ -69,16 +69,34 @@ module N
       all_types_qry.where(:element, RDF.type, :type)
       all_types = all_types_qry.execute
       
+      all_types_hash = {}
+      all_types.each { |type| all_types_hash[type] = true }
+      
       qry = Query.new(SourceClass).distinct.select(:class, :subclass)
-      qry.where(:element, RDF.type, :class)
-      qry.where(:other, RDF.type, :subclass)
       qry.where(:subclass, RDFS.subClassOf, :class)
       subtype_list = qry.execute
       
-      build_hierarchy_from(subtype_list, all_types)
+      hierarchy = build_hierarchy_from(subtype_list)
+      purge_hierarchy!(hierarchy, all_types_hash)
+      
+      hierarchy
     end
     
     private
+    
+    # Purge the elements from the hierarchy that don't have any "used"
+    # children. Returns true if some "used" elements were found in
+    # the hierarchy
+    def self.purge_hierarchy!(elements, used_elements)
+      used = false
+      elements.each do |element, children|
+        used_children = purge_hierarchy!(children, used_elements)
+        used_element = used_children || used_elements[element]
+        elements.delete(element) unless(used_element)
+        used ||= used_element
+      end
+      used
+    end
     
     # If all_types is given, it must be a true superset of all
     # types in the query result
@@ -94,7 +112,7 @@ module N
       # Now we link up the subclass relations
       hierarchy.each do |key, values|
         values.each_key do |subkey|
-          next if(subkey == :is_child)
+          next if(subkey.is_a?(Symbol))
           hierarchy[subkey] ||= {}
           values[subkey] = hierarchy[subkey]
           values[subkey][:is_child] = true
