@@ -1,3 +1,9 @@
 = SemanticNaming
 
-Semantic URL handling that can be used with the Talia system or ActiveRDF
+Semantic URL handling that can be used with the Talia system or ActiveRDF. This contains
+a number of methods of encoding semantic URIs, dealing with namespaces and providing a 
+neat interface to access URIs.
+
+The library offers additional functionality when active_rdf is installed. Note that at this
+point in time you should use the 'activerdf_net7' gem, as it's tuned to work with the 
+semantic naming. The default activerdf gem *will* cause problems.

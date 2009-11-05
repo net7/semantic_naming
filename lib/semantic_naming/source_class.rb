@@ -40,7 +40,13 @@ module N
       qry.execute
     end
     
-    # Return a subclass hierarchy
+    # Return a subclass hierarchy. This is quicker than going through
+    # the hierarchy step by step. It will look at all subclass (*not*
+    # superclass!) relationships and return a nested, tree-like structure
+    # build of hashes. Each key in the hash will be the class object, and
+    # the values are hashes with the child elements, and so on
+    #
+    # E.g. : { type1 => { subtype_a => {}, subtype_b => { xtype => {}} }, type_2 => {}}
     def self.subclass_hierarchy
       return nil unless(URI.active_rdf?)
       types = rdf_types
