@@ -92,31 +92,31 @@ This class contains basic functionality for URIs
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000012">+</a>&nbsp;&nbsp;
-      <a href="#M000009">==</a>&nbsp;&nbsp;
-      <a href="#M000022">[]</a>&nbsp;&nbsp;
-      <a href="#M000019">const_missing</a>&nbsp;&nbsp;
-      <a href="#M000021">domain_of?</a>&nbsp;&nbsp;
-      <a href="#M000027">domain_part</a>&nbsp;&nbsp;
-      <a href="#M000010">eql?</a>&nbsp;&nbsp;
-      <a href="#M000011">hash</a>&nbsp;&nbsp;
-      <a href="#M000031">is_uri?</a>&nbsp;&nbsp;
-      <a href="#M000013">local?</a>&nbsp;&nbsp;
-      <a href="#M000026">local_name</a>&nbsp;&nbsp;
-      <a href="#M000025">make_uri</a>&nbsp;&nbsp;
-      <a href="#M000020">method_missing</a>&nbsp;&nbsp;
-      <a href="#M000028">my_shortcut</a>&nbsp;&nbsp;
-      <a href="#M000029">namespace</a>&nbsp;&nbsp;
-      <a href="#M000008">new</a>&nbsp;&nbsp;
-      <a href="#M000032">rdf_label</a>&nbsp;&nbsp;
-      <a href="#M000014">remote?</a>&nbsp;&nbsp;
-      <a href="#M000030">shortcut</a>&nbsp;&nbsp;
-      <a href="#M000024">shortcut_exists?</a>&nbsp;&nbsp;
-      <a href="#M000023">shortcuts</a>&nbsp;&nbsp;
-      <a href="#M000018">to_name_s</a>&nbsp;&nbsp;
-      <a href="#M000015">to_s</a>&nbsp;&nbsp;
-      <a href="#M000016">to_yaml</a>&nbsp;&nbsp;
-      <a href="#M000017">uri</a>&nbsp;&nbsp;
+      <a href="#M000013">+</a>&nbsp;&nbsp;
+      <a href="#M000010">==</a>&nbsp;&nbsp;
+      <a href="#M000023">[]</a>&nbsp;&nbsp;
+      <a href="#M000020">const_missing</a>&nbsp;&nbsp;
+      <a href="#M000022">domain_of?</a>&nbsp;&nbsp;
+      <a href="#M000028">domain_part</a>&nbsp;&nbsp;
+      <a href="#M000011">eql?</a>&nbsp;&nbsp;
+      <a href="#M000012">hash</a>&nbsp;&nbsp;
+      <a href="#M000032">is_uri?</a>&nbsp;&nbsp;
+      <a href="#M000014">local?</a>&nbsp;&nbsp;
+      <a href="#M000027">local_name</a>&nbsp;&nbsp;
+      <a href="#M000026">make_uri</a>&nbsp;&nbsp;
+      <a href="#M000021">method_missing</a>&nbsp;&nbsp;
+      <a href="#M000029">my_shortcut</a>&nbsp;&nbsp;
+      <a href="#M000030">namespace</a>&nbsp;&nbsp;
+      <a href="#M000009">new</a>&nbsp;&nbsp;
+      <a href="#M000033">rdf_label</a>&nbsp;&nbsp;
+      <a href="#M000015">remote?</a>&nbsp;&nbsp;
+      <a href="#M000031">shortcut</a>&nbsp;&nbsp;
+      <a href="#M000025">shortcut_exists?</a>&nbsp;&nbsp;
+      <a href="#M000024">shortcuts</a>&nbsp;&nbsp;
+      <a href="#M000019">to_name_s</a>&nbsp;&nbsp;
+      <a href="#M000016">to_s</a>&nbsp;&nbsp;
+      <a href="#M000017">to_yaml</a>&nbsp;&nbsp;
+      <a href="#M000018">uri</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -145,11 +145,11 @@ This class contains basic functionality for URIs
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000022" class="method-detail">
-        <a name="M000022"></a>
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
 
         <div class="method-heading">
-          <a href="#M000022" class="method-signature">
+          <a href="#M000023" class="method-signature">
           <span class="method-name">[]</span><span class="method-args">(shortcut)</span>
           </a>
         </div>
@@ -157,13 +157,13 @@ This class contains basic functionality for URIs
         <div class="method-description">
           <p>
 Request <a href="URI.html">URI</a> by <a
-href="URI.html#M000030">shortcut</a>. If called on a sublass, this accessor
+href="URI.html#M000031">shortcut</a>. If called on a sublass, this accessor
 will only return an <a href="URI.html">URI</a> if it&#8216;s of the same
 type as the subclass.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000022-source">
+            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000023-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 111</span>
 111:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-operator">[]</span>(<span class="ruby-identifier">shortcut</span>)
@@ -179,11 +179,11 @@ type as the subclass.
         </div>
       </div>
 
-      <div id="method-M000031" class="method-detail">
-        <a name="M000031"></a>
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
 
         <div class="method-heading">
-          <a href="#M000031" class="method-signature">
+          <a href="#M000032" class="method-signature">
           <span class="method-name">is_uri?</span><span class="method-args">(uri_str)</span>
           </a>
         </div>
@@ -193,8 +193,8 @@ type as the subclass.
 Check if a given string is an <a href="URI.html">URI</a>
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000031-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000031-source">
+            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000032-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 222</span>
 222:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">is_uri?</span>(<span class="ruby-identifier">uri_str</span>)
@@ -205,11 +205,11 @@ Check if a given string is an <a href="URI.html">URI</a>
         </div>
       </div>
 
-      <div id="method-M000025" class="method-detail">
-        <a name="M000025"></a>
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
 
         <div class="method-heading">
-          <a href="#M000025" class="method-signature">
+          <a href="#M000026" class="method-signature">
           <span class="method-name">make_uri</span><span class="method-args">(str, separator = &quot;:&quot;, default_namespace = N::LOCAL)</span>
           </a>
         </div>
@@ -220,8 +220,8 @@ Get an <a href="URI.html">URI</a> string from the given string in ns:name
 notation
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000025-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000025-source">
+            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000026-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 138</span>
 138:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">make_uri</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">separator</span> = <span class="ruby-value str">&quot;:&quot;</span>, <span class="ruby-identifier">default_namespace</span> = <span class="ruby-constant">N</span><span class="ruby-operator">::</span><span class="ruby-constant">LOCAL</span>)
@@ -240,22 +240,22 @@ notation
         </div>
       </div>
 
-      <div id="method-M000008" class="method-detail">
-        <a name="M000008"></a>
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
 
         <div class="method-heading">
-          <a href="#M000008" class="method-signature">
+          <a href="#M000009" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(uri_s)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Create a <a href="URI.html#M000008">new</a> <a href="URI.html">URI</a>
+Create a <a href="URI.html#M000009">new</a> <a href="URI.html">URI</a>
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000008-source">
+            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000009-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 27</span>
 27:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">uri_s</span>)
@@ -268,26 +268,26 @@ Create a <a href="URI.html#M000008">new</a> <a href="URI.html">URI</a>
         </div>
       </div>
 
-      <div id="method-M000030" class="method-detail">
-        <a name="M000030"></a>
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
 
         <div class="method-heading">
-          <a href="#M000030" class="method-signature">
+          <a href="#M000031" class="method-signature">
           <span class="method-name">shortcut</span><span class="method-args">(shortcut, uri, force = false)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Register a <a href="URI.html#M000030">shortcut</a> to the given <a
+Register a <a href="URI.html#M000031">shortcut</a> to the given <a
 href="URI.html">URI</a>. You may force to overwrite an existing <a
-href="URI.html#M000030">shortcut</a>, but this is not recommended. The
+href="URI.html#M000031">shortcut</a>, but this is not recommended. The
 option exists practically only to override default namespaces if there is a
 need.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000030-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000030-source">
+            onclick="toggleCode('M000031-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000031-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 199</span>
 199:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">shortcut</span>(<span class="ruby-identifier">shortcut</span>, <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">force</span> = <span class="ruby-keyword kw">false</span>)
@@ -316,22 +316,22 @@ need.
         </div>
       </div>
 
-      <div id="method-M000024" class="method-detail">
-        <a name="M000024"></a>
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
 
         <div class="method-heading">
-          <a href="#M000024" class="method-signature">
+          <a href="#M000025" class="method-signature">
           <span class="method-name">shortcut_exists?</span><span class="method-args">(shortcut)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Check if a <a href="URI.html#M000030">shortcut</a> is registered
+Check if a <a href="URI.html#M000031">shortcut</a> is registered
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000024-source">
+            onclick="toggleCode('M000025-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000025-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 133</span>
 133:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">shortcut_exists?</span>(<span class="ruby-identifier">shortcut</span>)
@@ -342,25 +342,25 @@ Check if a <a href="URI.html#M000030">shortcut</a> is registered
         </div>
       </div>
 
-      <div id="method-M000023" class="method-detail">
-        <a name="M000023"></a>
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
 
         <div class="method-heading">
-          <a href="#M000023" class="method-signature">
+          <a href="#M000024" class="method-signature">
           <span class="method-name">shortcuts</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Returns a <a href="URI.html#M000011">hash</a> with all registered <a
-href="URI.html#M000023">shortcuts</a>. This will only return the <a
-href="URI.html#M000023">shortcuts</a> of the same class (and subclasses)
+Returns a <a href="URI.html#M000012">hash</a> with all registered <a
+href="URI.html#M000024">shortcuts</a>. This will only return the <a
+href="URI.html#M000024">shortcuts</a> of the same class (and subclasses)
 than the one on which the method is called
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000023-source">
+            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000024-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 123</span>
 123:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">shortcuts</span>
@@ -378,11 +378,11 @@ than the one on which the method is called
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000012" class="method-detail">
-        <a name="M000012"></a>
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
 
         <div class="method-heading">
-          <a href="#M000012" class="method-signature">
+          <a href="#M000013" class="method-signature">
           <span class="method-name">+</span><span class="method-args">(uri)</span>
           </a>
         </div>
@@ -392,8 +392,8 @@ than the one on which the method is called
 Add operator
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000012-source">
+            onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000013-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 52</span>
 52:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">+</span>(<span class="ruby-identifier">uri</span>)
@@ -405,11 +405,11 @@ Add operator
         </div>
       </div>
 
-      <div id="method-M000009" class="method-detail">
-        <a name="M000009"></a>
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
 
         <div class="method-heading">
-          <a href="#M000009" class="method-signature">
+          <a href="#M000010" class="method-signature">
           <span class="method-name">==</span><span class="method-args">(object)</span>
           </a>
         </div>
@@ -419,8 +419,8 @@ Add operator
 Compare operator
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000009-source">
+            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000010-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 34</span>
 34:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">object</span>)
@@ -433,11 +433,11 @@ Compare operator
         </div>
       </div>
 
-      <div id="method-M000019" class="method-detail">
-        <a name="M000019"></a>
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
 
         <div class="method-heading">
-          <a href="#M000019" class="method-signature">
+          <a href="#M000020" class="method-signature">
           <span class="method-name">const_missing</span><span class="method-args">(klass)</span>
           </a>
         </div>
@@ -447,8 +447,8 @@ Compare operator
 This creates a helpers for a nice notation of like my_domain::myid
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000019-source">
+            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000020-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 88</span>
 88:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">const_missing</span>(<span class="ruby-identifier">klass</span>)
@@ -459,11 +459,11 @@ This creates a helpers for a nice notation of like my_domain::myid
         </div>
       </div>
 
-      <div id="method-M000021" class="method-detail">
-        <a name="M000021"></a>
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
 
         <div class="method-heading">
-          <a href="#M000021" class="method-signature">
+          <a href="#M000022" class="method-signature">
           <span class="method-name">domain_of?</span><span class="method-args">(uri)</span>
           </a>
         </div>
@@ -471,12 +471,12 @@ This creates a helpers for a nice notation of like my_domain::myid
         <div class="method-description">
           <p>
 Is true if this object describes the domain of the given <a
-href="URI.html#M000017">uri</a>, and the given <a
-href="URI.html#M000017">uri</a> is a resource in that domain
+href="URI.html#M000018">uri</a>, and the given <a
+href="URI.html#M000018">uri</a> is a resource in that domain
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000021-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000021-source">
+            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000022-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 103</span>
 103:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">domain_of?</span>(<span class="ruby-identifier">uri</span>)
@@ -489,11 +489,11 @@ href="URI.html#M000017">uri</a> is a resource in that domain
         </div>
       </div>
 
-      <div id="method-M000027" class="method-detail">
-        <a name="M000027"></a>
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
 
         <div class="method-heading">
-          <a href="#M000027" class="method-signature">
+          <a href="#M000028" class="method-signature">
           <span class="method-name">domain_part</span><span class="method-args">()</span>
           </a>
         </div>
@@ -503,8 +503,8 @@ href="URI.html#M000017">uri</a> is a resource in that domain
 Returns the domain part of the <a href="URI.html">URI</a>
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000027-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000027-source">
+            onclick="toggleCode('M000028-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000028-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 162</span>
 162:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">domain_part</span>
@@ -521,22 +521,22 @@ Returns the domain part of the <a href="URI.html">URI</a>
         </div>
       </div>
 
-      <div id="method-M000010" class="method-detail">
-        <a name="M000010"></a>
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
 
         <div class="method-heading">
-          <a href="#M000010" class="method-signature">
+          <a href="#M000011" class="method-signature">
           <span class="method-name">eql?</span><span class="method-args">(object)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-<a href="URI.html#M000010">eql?</a> compare operator
+<a href="URI.html#M000011">eql?</a> compare operator
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000010-source">
+            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000011-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 41</span>
 41:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">eql?</span>(<span class="ruby-identifier">object</span>)
@@ -548,22 +548,22 @@ Returns the domain part of the <a href="URI.html">URI</a>
         </div>
       </div>
 
-      <div id="method-M000011" class="method-detail">
-        <a name="M000011"></a>
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
 
         <div class="method-heading">
-          <a href="#M000011" class="method-signature">
+          <a href="#M000012" class="method-signature">
           <span class="method-name">hash</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Returns a <a href="URI.html#M000011">hash</a>
+Returns a <a href="URI.html#M000012">hash</a>
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000011-source">
+            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000012-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 47</span>
 47:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hash</span>
@@ -574,11 +574,11 @@ Returns a <a href="URI.html#M000011">hash</a>
         </div>
       </div>
 
-      <div id="method-M000013" class="method-detail">
-        <a name="M000013"></a>
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
 
         <div class="method-heading">
-          <a href="#M000013" class="method-signature">
+          <a href="#M000014" class="method-signature">
           <span class="method-name">local?</span><span class="method-args">()</span>
           </a>
         </div>
@@ -588,8 +588,8 @@ Returns a <a href="URI.html#M000011">hash</a>
 Checks if the current <a href="URI.html">URI</a> is local
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000013-source">
+            onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000014-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 58</span>
 58:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">local?</span>
@@ -600,11 +600,11 @@ Checks if the current <a href="URI.html">URI</a> is local
         </div>
       </div>
 
-      <div id="method-M000026" class="method-detail">
-        <a name="M000026"></a>
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
 
         <div class="method-heading">
-          <a href="#M000026" class="method-signature">
+          <a href="#M000027" class="method-signature">
           <span class="method-name">local_name</span><span class="method-args">()</span>
           </a>
         </div>
@@ -614,8 +614,8 @@ Checks if the current <a href="URI.html">URI</a> is local
 Returns the local name
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000026-source">
+            onclick="toggleCode('M000027-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000027-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 151</span>
 151:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">local_name</span>
@@ -632,22 +632,22 @@ Returns the local name
         </div>
       </div>
 
-      <div id="method-M000020" class="method-detail">
-        <a name="M000020"></a>
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
 
         <div class="method-heading">
-          <a href="#M000020" class="method-signature">
+          <a href="#M000021" class="method-signature">
           <span class="method-name">method_missing</span><span class="method-args">(method, *args)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-See <a href="URI.html#M000019">const_missing</a>
+See <a href="URI.html#M000020">const_missing</a>
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000020-source">
+            onclick="toggleCode('M000021-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000021-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 93</span>
 93:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
@@ -661,25 +661,25 @@ See <a href="URI.html#M000019">const_missing</a>
         </div>
       </div>
 
-      <div id="method-M000028" class="method-detail">
-        <a name="M000028"></a>
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
 
         <div class="method-heading">
-          <a href="#M000028" class="method-signature">
+          <a href="#M000029" class="method-signature">
           <span class="method-name">my_shortcut</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Returns the <a href="URI.html#M000030">shortcut</a> for the current <a
+Returns the <a href="URI.html#M000031">shortcut</a> for the current <a
 href="URI.html">URI</a>, or nil if no <a
-href="URI.html#M000030">shortcut</a> is defined for this <a
+href="URI.html#M000031">shortcut</a> is defined for this <a
 href="URI.html">URI</a>
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000028-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000028-source">
+            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000029-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 174</span>
 174:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">my_shortcut</span>
@@ -690,32 +690,32 @@ href="URI.html">URI</a>
         </div>
       </div>
 
-      <div id="method-M000029" class="method-detail">
-        <a name="M000029"></a>
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
 
         <div class="method-heading">
-          <a href="#M000029" class="method-signature">
+          <a href="#M000030" class="method-signature">
           <span class="method-name">namespace</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Returns the <a href="URI.html#M000029">namespace</a> of this <a
+Returns the <a href="URI.html#M000030">namespace</a> of this <a
 href="URI.html">URI</a>, if the <a href="URI.html">URI</a> is part of a <a
-href="URI.html#M000029">namespace</a>. The rule is quite strict: The <a
+href="URI.html#M000030">namespace</a>. The rule is quite strict: The <a
 href="URI.html">URI</a> is only part of the <a
-href="URI.html#M000029">namespace</a> if it is the <a
-href="URI.html#M000029">namespace</a> itself or the <a
-href="URI.html#M000029">namespace</a> plus a single local part
+href="URI.html#M000030">namespace</a> if it is the <a
+href="URI.html#M000030">namespace</a> itself or the <a
+href="URI.html#M000030">namespace</a> plus a single local part
 </p>
 <p>
 If the <a href="URI.html">URI</a> is not part of a <a
-href="URI.html#M000029">namespace</a>, nil is returned
+href="URI.html#M000030">namespace</a>, nil is returned
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000029-source">
+            onclick="toggleCode('M000030-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000030-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 184</span>
 184:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespace</span>
@@ -734,11 +734,11 @@ href="URI.html#M000029">namespace</a>, nil is returned
         </div>
       </div>
 
-      <div id="method-M000032" class="method-detail">
-        <a name="M000032"></a>
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
 
         <div class="method-heading">
-          <a href="#M000032" class="method-signature">
+          <a href="#M000033" class="method-signature">
           <span class="method-name">rdf_label</span><span class="method-args">(language = 'en')</span>
           </a>
         </div>
@@ -755,8 +755,8 @@ default. If no label with a language marker is found, the first
 none-language-label is used
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000032-source">
+            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000033-source">
 <pre>
      <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 233</span>
 233:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rdf_label</span>(<span class="ruby-identifier">language</span> = <span class="ruby-value str">'en'</span>)
@@ -771,11 +771,11 @@ none-language-label is used
         </div>
       </div>
 
-      <div id="method-M000014" class="method-detail">
-        <a name="M000014"></a>
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
 
         <div class="method-heading">
-          <a href="#M000014" class="method-signature">
+          <a href="#M000015" class="method-signature">
           <span class="method-name">remote?</span><span class="method-args">()</span>
           </a>
         </div>
@@ -785,8 +785,8 @@ none-language-label is used
 Redirect for checking if this is remote
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000014-source">
+            onclick="toggleCode('M000015-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000015-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 63</span>
 63:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remote?</span>
@@ -797,11 +797,11 @@ Redirect for checking if this is remote
         </div>
       </div>
 
-      <div id="method-M000018" class="method-detail">
-        <a name="M000018"></a>
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
 
         <div class="method-heading">
-          <a href="#M000018" class="method-signature">
+          <a href="#M000019" class="method-signature">
           <span class="method-name">to_name_s</span><span class="method-args">(separator = ':')</span>
           </a>
         </div>
@@ -809,12 +809,12 @@ Redirect for checking if this is remote
         <div class="method-description">
           <p>
 Get a string representation in the form of &#8216;<a
-href="URI.html#M000029">namespace</a>:name&#8217;. It is possible to select
+href="URI.html#M000030">namespace</a>:name&#8217;. It is possible to select
 a different separator from &#8217;:&#8217;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000018-source">
+            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000019-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 82</span>
 82:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_name_s</span>(<span class="ruby-identifier">separator</span> = <span class="ruby-value str">':'</span>)
@@ -825,22 +825,22 @@ a different separator from &#8217;:&#8217;
         </div>
       </div>
 
-      <div id="method-M000015" class="method-detail">
-        <a name="M000015"></a>
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
 
         <div class="method-heading">
-          <a href="#M000015" class="method-signature">
+          <a href="#M000016" class="method-signature">
           <span class="method-name">to_s</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-String representation is the <a href="URI.html#M000017">uri</a> itself
+String representation is the <a href="URI.html#M000018">uri</a> itself
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000015-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000015-source">
+            onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000016-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 68</span>
 68:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
@@ -851,22 +851,22 @@ String representation is the <a href="URI.html#M000017">uri</a> itself
         </div>
       </div>
 
-      <div id="method-M000016" class="method-detail">
-        <a name="M000016"></a>
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
 
         <div class="method-heading">
-          <a href="#M000016" class="method-signature">
+          <a href="#M000017" class="method-signature">
           <span class="method-name">to_yaml</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-YAML representation is the <a href="URI.html#M000017">uri</a> string
+YAML representation is the <a href="URI.html#M000018">uri</a> string
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000016-source">
+            onclick="toggleCode('M000017-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000017-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/semantic_naming/uri.rb, line 73</span>
 73:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_yaml</span>
@@ -877,8 +877,8 @@ YAML representation is the <a href="URI.html#M000017">uri</a> string
         </div>
       </div>
 
-      <div id="method-M000017" class="method-detail">
-        <a name="M000017"></a>
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
 
         <div class="method-heading">
           <span class="method-name">uri</span><span class="method-args">()</span>
@@ -886,7 +886,7 @@ YAML representation is the <a href="URI.html#M000017">uri</a> string
       
         <div class="method-description">
           <p>
-Alias for <a href="URI.html#M000015">to_s</a>
+Alias for <a href="URI.html#M000016">to_s</a>
 </p>
         </div>
       </div>
