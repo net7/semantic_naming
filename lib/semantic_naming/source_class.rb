@@ -54,9 +54,38 @@ module N
       qry.where(:class, RDF.type, RDFS.Class)
       qry.where(:subclass, RDFS.subClassOf, :class)
       subtype_list = qry.execute
+      
+      build_hierarchy_from(subtype_list, rdf_types)
+    end
+    
+    # This works like the subclass_hierarchy method, with the exception that
+    # 
+    # * Ontology information is only used for subtype relations
+    # * Resources are considered a "type" if they appear as an rdf:type attribute
+    # * Only types that are actively used (that is they appear as an rdf:type attribute)
+    #   are included
+    def self.used_subclass_hierarchy
+      all_types_qry = Query.new(SourceClass).distinct.select(:type)
+      all_types_qry.where(:element, RDF.type, :type)
+      all_types = all_types_qry.execute
+      
+      qry = Query.new(SourceClass).distinct.select(:class, :subclass)
+      qry.where(:element, RDF.type, :class)
+      qry.where(:other, RDF.type, :subclass)
+      qry.where(:subclass, RDFS.subClassOf, :class)
+      subtype_list = qry.execute
+      
+      build_hierarchy_from(subtype_list, all_types)
+    end
+    
+    private
+    
+    # If all_types is given, it must be a true superset of all
+    # types in the query result
+    def self.build_hierarchy_from(query_result, all_types = nil)
       hierarchy = {}
       # Sift through the triples and add the sub-items
-      subtype_list.each do |sub_items|
+      query_result.each do |sub_items|
         klass, subklass = sub_items
         hierarchy[klass] ||= {}
         hierarchy[klass][subklass] = true
@@ -72,11 +101,16 @@ module N
         end
       end
       
+      all_types ||= hierarchy.keys
+      
       # Join with the general types and remove the children
-      types.each do |type|
+      all_types.each do |type|
         xtype = (hierarchy[type] ||= {})
         hierarchy.delete(type) if(xtype.delete(:is_child))
       end
+      
+      hierarchy.delete(N::RDFS.Class)
+      hierarchy.delete(N::OWL.Class) if(defined?(N::OWL))
       
       hierarchy
     end

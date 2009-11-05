@@ -49,5 +49,9 @@ class TypeTest < Test::Unit::TestCase
     assert_equal({N::RDFTEST.Type1 => { N::RDFTEST.Type2 => {}, N::RDFTEST.Type3 => {} }, N::RDFTEST.Type4 => { N::RDFTEST.Type3 => {}}}, hierarchy)
   end
   
+  def test_used_subclass_hierarchy
+    hierarchy = N::SourceClass.used_subclass_hierarchy
+    assert_equal({N::RDFTEST.Type1 => { N::RDFTEST.Type2 => {}}}, hierarchy)
+  end
   
 end
