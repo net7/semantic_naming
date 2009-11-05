@@ -43,4 +43,11 @@ class TypeTest < Test::Unit::TestCase
     types = N::SourceClass.rdf_types.collect { |type| type.uri.to_s }
     assert_equal([N::RDFTEST.Type1.to_s, N::RDFTEST.Type2.to_s, N::RDFTEST.Type3.to_s, N::RDFTEST.Type4.to_s].sort, types.sort)
   end
+  
+  def test_subclass_hierarchy
+    hierarchy = N::SourceClass.subclass_hierarchy
+    assert_equal({N::RDFTEST.Type1 => { N::RDFTEST.Type2 => {}, N::RDFTEST.Type3 => {} }, N::RDFTEST.Type4 => { N::RDFTEST.Type3 => {}}}, hierarchy)
+  end
+  
+  
 end

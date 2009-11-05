@@ -6,6 +6,13 @@ this_dir = File.dirname(File.expand_path(file))
 $: << this_dir
 $: << this_dir + '/semantic_naming/'
 
+require 'rubygems'
+begin
+  require 'active_rdf'
+rescue
+  puts "ActiveRDF not found"
+end
+
 require 'semantic_naming/uri'
 require 'semantic_naming/default_namespaces'
 require 'semantic_naming/namespace'

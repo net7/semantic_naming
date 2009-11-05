@@ -1,4 +1,3 @@
-require 'active_rdf'
 module N
   
   # This class contains basic functionality for URIs
@@ -140,7 +139,9 @@ module N
       type = str.split(separator)
       type = [type[1]] if(type[0] == "")
       if(type.size == 2)
-        self.new(N::URI[type[0]] + type[1])
+        namespace = N::URI[type[0]]
+        raise(ArgumentError, "Unknown namespace #{type[0]} for #{str}") unless(namespace)
+        self.new(namespace + type[1])
       else
         default_namespace + type[0]
       end
@@ -265,20 +266,10 @@ module N
       URI.active_rdf?
     end
     
-    # Create a resource from the given type
-    def self.make_res(type)
-      ::RDFS::Resource.new(type.to_s)
-    end
-    
-    # Instance convenience accessor
-    def make_res(type)
-      self.class.make_res(type)
-    end
-    
     # Gets the rdfs:labels from the rdf store
     def rdfs_labels
      if(active_rdf? && is_iri?)
-        labels = make_res(@uri_s)[(N::RDFS::label).to_s]
+        labels = Query.new(N::URI).distinct.select(:label).where(self, N::RDFS.label, :label).execute
         if(labels && labels.size > 0)
           labels
         end # else nil
@@ -301,6 +292,8 @@ module N
       
       result
     end
+    
+
     
   end
 end

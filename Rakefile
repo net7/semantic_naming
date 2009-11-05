@@ -41,5 +41,4 @@ rescue LoadError
   puts "Gokdok or dependency not available. Install with: gem install gokdok"
 end
 
-
-task :cruise => ['test', 'rdoc']
+task :release_all => [:release, 'gokdok:push', 'gemcutter:release']

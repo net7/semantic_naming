@@ -19,10 +19,10 @@ module N
     # (e.g. Onotology classes)
     def elements_with_type(type, element_type = N::URI)
       return unless(rdf_active? && is_iri?)
-      qry = ::Query.new.distinct.select(:s)
-      qry.where(:s, make_res(RDF::type), make_res(type))
-      qry.filter_uri_regexp(:s, "^#{@uri_s}")
-      qry.execute.collect { |item| element_type.new(item.uri) }
+      qry = ::Query.new(element_type).distinct.select(:s)
+      qry.where(:s, RDF.type, type)
+      qry.filter_regexp(:s, "^#{@uri_s}")
+      qry.execute
     end
     
     # Returns a list of predicate names.

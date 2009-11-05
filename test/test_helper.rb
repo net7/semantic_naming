@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + "/../lib/semantic_naming"
 begin
+  require 'rubygems'
   $: << File.join(File.dirname(__FILE__), '..', '..', 'ActiveRDF', 'lib')
   require 'active_rdf'
   
@@ -19,9 +20,9 @@ begin
   end
   
   RDF_ACTIVE = adapter_found
-rescue Exception
+rescue Exception => e
   RDF_ACTIVE = false
-  $stderr.puts "Not running rdf-tests: ActiveRDF could not be loaded."
+  $stderr.puts "Not running rdf-tests: ActiveRDF could not be loaded: #{e.message}"
 end
 
 # Check for the tesly adapter, and load it if it's there
