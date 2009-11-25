@@ -238,6 +238,11 @@ module N
       @labels[language]
     end
     
+    # to_uri just returns a clone of itself
+    def to_uri
+      self.clone
+    end
+    
     private
     
     # Check if the ActiveRDF library is present.

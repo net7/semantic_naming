@@ -206,6 +206,12 @@ class URITest < Test::Unit::TestCase
     assert_equal(nil, N::URI.new("http://iamnotanamespace/").namespace)
   end
   
+  def test_to_uri
+    uri = N::URI.new('http://someotheruri.com/test.pdf')
+    assert_equal(uri, uri.to_uri)
+    assert_not_same(uri, uri.to_uri)
+  end
+  
   # Test rdf label
   def test_rdf_label
     uri = N::URI.new(N::RDFTEST::test1)
