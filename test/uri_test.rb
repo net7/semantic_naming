@@ -224,6 +224,18 @@ class URITest < Test::Unit::TestCase
     end
   end
   
+  def test_to_name_s
+    assert_equal('rdftest:foo', N::RDFTEST.foo.to_name_s)
+  end
+  
+  def test_to_name_s_separator
+    assert_equal('rdftest#foo', N::RDFTEST.foo.to_name_s('#'))
+  end
+  
+  def test_to_name_s_nogo
+    assert_equal('http://unknownnamespacething.com/thing', N::URI.new('http://unknownnamespacething.com/thing').to_name_s)
+  end
+  
   def test_hash
     assert_equal(N::RDFTEST.testme.to_s.hash, N::RDFTEST.testme.hash)
   end

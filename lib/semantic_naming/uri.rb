@@ -79,8 +79,16 @@ module N
     
     # Get a string representation in the form of 'namespace:name'. It is 
     # possible to select a different separator from ':'
+    #
+    # If this uri is not part of a namespace, the whole uri string will
+    # be returned.
     def to_name_s(separator = ':')
-      "#{namespace}#{separator}#{local_name}"
+      nspace = namespace
+      if(nspace)
+        "#{nspace}#{separator}#{local_name}"
+      else
+        @uri_s
+      end
     end
     
     # This creates a helpers for a nice notation of
