@@ -88,12 +88,21 @@ class URITest < Test::Unit::TestCase
   def build_test_for_weed
     graph = build_test_graph
     
+    graph.add_relation('a', 'a')
     graph.add_relation('a', 'f')
     graph.add_relation('a', 'g')
     graph.add_relation('a', 'h')
     graph.add_relation('a', 'i')
+    graph.add_relation('b', 'b')
+    graph.add_relation('c', 'c')
+    graph.add_relation('d', 'd')
     graph.add_relation('d', 'h')
     graph.add_relation('d', 'i')
+    graph.add_relation('e', 'e')
+    graph.add_relation('f', 'f')
+    graph.add_relation('g', 'g')
+    graph.add_relation('h', 'h')
+    graph.add_relation('i', 'i')
     graph.add_relation('g', 'i')
     graph.add_relation('b', 'f')
     graph.add_relation('b', 'g')

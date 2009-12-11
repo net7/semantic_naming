@@ -19,6 +19,7 @@ module OntologyGraph
     def add_relation(superclass, subclass)
       subclass = get_or_create_node(subclass)
       superclass = get_or_create_node(superclass)
+      return if(subclass.uri == superclass.uri) # don't accept self-relations
       superclass.add_subclass(subclass)
     end
     
