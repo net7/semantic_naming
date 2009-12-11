@@ -2,9 +2,9 @@ module N
   
   # This class contains basic functionality for URIs
   class URI
-  
+
     # Should behave like an ActiveRDF resource
-    include RDFS::ResourceLike
+    include RDFS::ResourceLike if(defined?(RDFS) && defined?(RDFS::ResourceLike))
     
     # Contains the registered uris
     @@registered_uris = Hash.new
@@ -305,8 +305,6 @@ module N
       
       result
     end
-    
-
     
   end
 end

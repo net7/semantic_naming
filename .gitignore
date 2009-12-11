@@ -1,2 +1,4 @@
 pkg/
 .gh_pages
+/html
+/test_sesame

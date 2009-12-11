@@ -9,7 +9,7 @@ $: << this_dir + '/semantic_naming/'
 require 'rubygems'
 begin
   require 'active_rdf'
-rescue
+rescue Exception
   puts "ActiveRDF not found"
 end
 
@@ -18,3 +18,5 @@ require 'semantic_naming/default_namespaces'
 require 'semantic_naming/namespace'
 require 'semantic_naming/source_class'
 require 'semantic_naming/predicate'
+require 'ontology_graph/graph'
+require 'ontology_graph/class_node'
