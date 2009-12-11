@@ -5,17 +5,19 @@
 
 Gem::Specification.new do |s|
   s.name = %q{semantic_naming}
-  s.version = "2.0.6"
+  s.version = "2.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daniel Hahn"]
-  s.date = %q{2009-11-26}
+  s.date = %q{2009-12-11}
   s.email = %q{hahn@netseven.it}
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
   s.files = [
-    "lib/semantic_naming.rb",
+    "lib/ontology_graph/class_node.rb",
+     "lib/ontology_graph/graph.rb",
+     "lib/semantic_naming.rb",
      "lib/semantic_naming/default_namespaces.rb",
      "lib/semantic_naming/namespace.rb",
      "lib/semantic_naming/predicate.rb",
@@ -28,7 +30,9 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{Semantic Naming Extensions for ActiveRDF, Talia and others}
   s.test_files = [
-    "test/namespace_test.rb",
+    "test/class_node_test.rb",
+     "test/graph_test.rb",
+     "test/namespace_test.rb",
      "test/predicate_test.rb",
      "test/source_class_test.rb",
      "test/uri_test.rb"
