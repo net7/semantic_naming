@@ -47,7 +47,9 @@ module OntologyGraph
         end
         reject
       end
-      subclasses.each { |sub| sub.weed_superclasses(root_path + [ self ]) }
+      # Clone the subclasses as some will be removed by the recursive calls
+      full_subclasses = subclasses.clone
+      full_subclasses.each { |sub| sub.weed_superclasses(root_path + [ self ]) }
     end
     
     def uri
