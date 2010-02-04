@@ -192,7 +192,7 @@ module N
     def namespace
       nspace = nil
       
-      domain_shortcut = domain_part.my_shortcut
+      domain_shortcut = domain_part ? domain_part.my_shortcut : nil
       
       if(domain_shortcut && URI[domain_shortcut].is_a?(Namespace))
         nspace = domain_shortcut
