@@ -256,7 +256,7 @@ module N
     # Check if the ActiveRDF library is present.
     def self.active_rdf?
       unless(defined?(@active_rdf))
-        @active_rdf = defined?(::ConnectionPool) &&  (::ConnectionPool.read_adapters.size > 0)
+        @active_rdf = defined?(ActiveRDF::ConnectionPool) &&  (ActiveRDF::ConnectionPool.read_adapters.size > 0)
       end
       
       @active_rdf
@@ -282,7 +282,7 @@ module N
     # Gets the rdfs:labels from the rdf store
     def rdfs_labels
      if(active_rdf? && is_iri?)
-        labels = Query.new(N::URI).distinct.select(:label).where(self, N::RDFS.label, :label).execute
+        labels = ActiveRDF::Query.new(N::URI).distinct.select(:label).where(self, N::RDFS.label, :label).execute
         if(labels && labels.size > 0)
           labels
         end # else nil

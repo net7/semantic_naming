@@ -5,14 +5,14 @@ begin
   require 'active_rdf'
   
   adapter_found = true
-  if(ConnectionPool.adapter_types.include?(:sesame))
-    ConnectionPool.add(:type => :sesame, :location => 'test_sesame')
+  if(ActiveRDF::ConnectionPool.adapter_types.include?(:sesame))
+    ActiveRDF::ConnectionPool.add(:type => :sesame, :location => 'test_sesame')
     puts "Running tests with Sesame adapter."
-  elsif(ConnectionPool.adapter_types.include?(:redland))
-    ConnectionPool.add(:type => :redland, :location => 'hashes', :name => :test, :"hash-type" => :memory)
+  elsif(ActiveRDF::ConnectionPool.adapter_types.include?(:redland))
+    ActiveRDF::ConnectionPool.add(:type => :redland, :location => 'hashes', :name => :test, :"hash-type" => :memory)
     puts "Running tests with Redland adapter."
-  elsif(ConnectionPool.adapter_types.include?(:rdflite))
-    ConnectionPool.add(:type => :rdflite)
+  elsif(ActiveRDF::ConnectionPool.adapter_types.include?(:rdflite))
+    ActiveRDF::ConnectionPool.add(:type => :rdflite)
     puts "Running tests with RDFLite adapter. Some may fail"
   else
     $stderr.puts "No suitable ActiveRDF adapter found. tests will not run."
@@ -35,7 +35,7 @@ N::Namespace.shortcut(:rdftest, 'http://rdftestdummy/')
 N::Namespace.shortcut(:rdftest2, 'http://rdftestdummy2/')
 
 if(RDF_ACTIVE)
-  db = ConnectionPool.write_adapter
+  db = ActiveRDF::ConnectionPool.write_adapter
   db.add(N::RDFTEST.test1, N::RDF::type, N::RDFTEST.Type1)
   db.add(N::RDFTEST.test1, N::RDFS::label, "Like a virgin")
   db.add(N::RDFTEST.test1, N::RDFS::label, "come on@en")

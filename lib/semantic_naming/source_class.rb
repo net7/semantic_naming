@@ -26,7 +26,7 @@ module N
     # graph but cause an RDF query on each call
     def instances(return_type)
       return nil unless(active_rdf? && is_iri?)
-      qry = Query.new(URI).distinct.select(:s)
+      qry = ActiveRDF::Query.new(URI).distinct.select(:s)
       qry.where(:s, RDF.type, self)
       qry.execute
     end

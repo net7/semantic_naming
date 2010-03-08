@@ -50,18 +50,18 @@ module OntologyGraph
       return unless(N::URI.active_rdf?)
       
       # First select all classes and add them as nodes
-      class_qry = Query.new(N::URI).select(:class).where(:class, N::RDF.type, N::RDFS.Class)
+      class_qry = ActiveRDF::Query.new(N::URI).select(:class).where(:class, N::RDF.type, N::RDFS.Class)
       types = class_qry.execute
       types.each { |t| @class_hash[t.to_s] = ClassNode.new(t.to_s) }
       
       # Now, look for all subclass relationships and add them
-      subtype_qry = Query.new(N::URI).distinct.select(:class, :subclass)
+      subtype_qry = ActiveRDF::Query.new(N::URI).distinct.select(:class, :subclass)
       subtype_qry.where(:subclass, RDFS.subClassOf, :class)
       subtype_list = subtype_qry.execute
       subtype_list.each  { |cl, subcl| add_relation(cl, subcl) }
       
       # Flag all classes that are actually used
-      used_types_qry = Query.new(N::URI).distinct.select(:type)
+      used_types_qry = ActiveRDF::Query.new(N::URI).distinct.select(:type)
       used_types_qry.where(:element, RDF.type, :type)
       used_types = used_types_qry.execute
       used_types.each { |t| get_or_create_node(t).flag_used }
