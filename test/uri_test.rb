@@ -226,11 +226,11 @@ class URITest < Test::Unit::TestCase
   
   def test_encode_uri
     uri = N::URI.new(N::RDFTEST::encoding)
-    assert_equal('uri_aHR0cDovL3JkZnRlc3RkdW1teS9lbmNvZGluZw::', uri.safe_encoded)
+    assert_equal('uri_aHR0cDovL3JkZnRlc3RkdW1teS9lbmNvZGluZw-_--_-', uri.safe_encoded)
   end
   
   def test_from_encoded
-    uri = N::URI.from_encoded('uri_aHR0cDovL3JkZnRlc3RkdW1teS9lbmNvZGluZw::')
+    uri = N::URI.from_encoded('uri_aHR0cDovL3JkZnRlc3RkdW1teS9lbmNvZGluZw-_--_-')
     assert_equal(N::RDFTEST::encoding, uri)
   end
   
