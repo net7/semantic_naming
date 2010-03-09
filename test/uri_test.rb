@@ -224,6 +224,16 @@ class URITest < Test::Unit::TestCase
     end
   end
   
+  def test_encode_uri
+    uri = N::URI.new(N::RDFTEST::encoding)
+    assert_equal('uri_aHR0cDovL3JkZnRlc3RkdW1teS9lbmNvZGluZw', uri.safe_encoded)
+  end
+  
+  def test_from_encoded
+    uri = N::URI.from_encoded('uri_aHR0cDovL3JkZnRlc3RkdW1teS9lbmNvZGluZw')
+    assert_equal(N::RDFTEST::encoding, uri)
+  end
+  
   def test_to_name_s
     assert_equal('rdftest:foo', N::RDFTEST.foo.to_name_s)
   end

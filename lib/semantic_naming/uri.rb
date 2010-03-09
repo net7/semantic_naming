@@ -1,3 +1,5 @@
+require 'base64'
+
 module N
   
   # This class contains basic functionality for URIs
@@ -249,6 +251,19 @@ module N
     # to_uri just returns a clone of itself
     def to_uri
       self.clone
+    end
+    
+    # Encodes the uri in a modified base64 format that will always form a legal 
+    # HTML id tag. 
+    def safe_encoded
+      'uri_' << Base64.encode64(@uri_s).gsub(/==\s*\Z/, '').gsub('+', '_').gsub('/', '-')
+    end
+    
+    
+    # Creates a new URI object from a string that was encoded with #safe_encoded
+    def self.from_encoded(encoded_uri)
+      uri = Base64.decode64(encoded_uri.gsub(/\Auri_/, '').gsub('_', '+').gsub('-', '/') + '==')
+      self.new(uri)
     end
     
     private
