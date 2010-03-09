@@ -256,13 +256,13 @@ module N
     # Encodes the uri in a modified base64 format that will always form a legal 
     # HTML id tag. 
     def safe_encoded
-      'uri_' << Base64.encode64(@uri_s).gsub(/==\s*\Z/, '').gsub('+', '_').gsub('/', '-')
+      'uri_' << Base64.encode64(@uri_s).gsub('=', ':').gsub('+', '_').gsub('/', '-').gsub(/\s/, '')
     end
     
     
     # Creates a new URI object from a string that was encoded with #safe_encoded
     def self.from_encoded(encoded_uri)
-      uri = Base64.decode64(encoded_uri.gsub(/\Auri_/, '').gsub('_', '+').gsub('-', '/') + '==')
+      uri = Base64.decode64(encoded_uri.gsub(/\Auri_/, '').gsub('_', '+').gsub('-', '/').gsub(':', '='))
       self.new(uri)
     end
     
